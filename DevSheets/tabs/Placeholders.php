@@ -1,5 +1,5 @@
 <h2>Placeholders</h2>
-<p>Various template placeholders...</p>
+<p>Various template placeholders. More info can be found by visiting the <a href="https://github.com/GetSimpleCMS-CE/GetSimpleCMS-CE/wiki/Template-Tags" target="_blank">Wiki <span class="link"></span></a>.</p>
 
 <h4>Common Template Tags:</h4>	
 <pre><code class="language-php" data-prismjs-copy="">&lt;?php get_site_name(); ?>
@@ -33,6 +33,8 @@
 &lt;?php include('common.footer.inc.php'); ?>
 </code></pre>
 
+<hr class="style-eight">
+
 <h4>Conditional Includes:</h4>
 
 <p class="title">By Template</p>
@@ -61,6 +63,8 @@ if(in_array(return_page_slug(),$slugs)){  ?>
 	fgh
 &lt;?php } ?>
 </code></pre>
+
+<hr class="style-eight">
 
 <h4>Basic Template Example:</h4>
 <p> </p>
