@@ -1,0 +1,99 @@
+<?php
+
+global $SITEURL;
+global $USR;
+
+include('../../gsconfig.php');
+$admin = defined('GSADMIN') ? GSADMIN : 'admin';
+include("../../{$admin}/inc/common.php");
+$loggedin = cookie_check();
+if (!$loggedin) die("Not logged in!");
+if (!defined('IN_GS')) {
+	die('you cannot load this page directly.');
+}
+
+echo '
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"  />
+		<title>Dev Sheets</title>
+		<link rel="shortcut icon" href="'.$SITEURL.'admin/favicon.png" type="image/x-icon" />
+		
+		<link rel="stylesheet" href="assets/w3.css">
+		<link rel="stylesheet" href="assets/w3-custom.css">
+		<link rel="stylesheet" href="assets/prism.css">
+		<style>
+			body {
+				font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+				font-size: 0.9rem;
+				color: black;
+			}
+			h2{font-size:18;color: #777;}
+			h3.floated{font-size:18;}
+		</style>
+	</head>
+
+	<div class="w3-parent w3-section">
+
+		<header class="w3-container w3-border-bottom w3-margin-bottom">
+			
+			<div class="w3-twothird">
+			
+				<h3 class="floated"><svg xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;" width="1.88em" height="1.5em" viewBox="0 0 640 512"><rect width="640" height="512" fill="none"/><path fill="#E6E6E6" d="M444.2 0c-47 49.6-60.2 126.5-60.2 192c0 158.8-27.3 247-42.7 283.9c-10 24-33.2 36.1-55.4 36.1H48c-11.5 0-22.2-6.2-27.8-16.2s-5.6-22.3.4-32.2c9.8-17.7 15.4-38.2 20.5-57.7C52.3 362.8 64 293.5 64 192C64 86 107 0 160 0zM512 384c-53 0-96-86-96-192S459 0 512 0s96 86 96 192s-43 192-96 192m0-128c17.7 0 32-28.7 32-64s-14.3-64-32-64s-32 28.7-32 64s14.3 64 32 64m-368-48a16 16 0 1 0-32 0a16 16 0 1 0 32 0m64 0a16 16 0 1 0-32 0a16 16 0 1 0 32 0m48 16a16 16 0 1 0 0-32a16 16 0 1 0 0 32m80-16a16 16 0 1 0-32 0a16 16 0 1 0 32 0" stroke-width="20" stroke="#000"/></svg> Dev Sheets</h3>
+				<p class="clear w3-margin-bottom">Wipe some troubles away.<br>Cheat Sheets for devs. Small list of common placeholders and other miscellaneous code snippets and tools.</p>
+				
+			</div>
+			
+			<div class="w3-third">
+				
+				<button style="float:right" onclick="window.close()" class="w3-btn w3-red w3-round"><svg xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;" width="1.5em" height="1.5em" viewBox="0 0 24 24"><rect width="24" height="24" fill="none"/><path fill="#000" d="M8 18q-.825 0-1.412-.587T6 16V4q0-.825.588-1.412T8 2h12q.825 0 1.413.588T22 4v12q0 .825-.587 1.413T20 18zm0-2h12V4H8zm-4 6q-.825 0-1.412-.587T2 20V7q0-.425.288-.712T3 6t.713.288T4 7v13h13q.425 0 .713.288T18 21t-.288.713T17 22zM8 4v12zm4.6 8.8l1.4-1.4l1.4 1.4q.275.275.7.275t.7-.275t.275-.7t-.275-.7L15.4 10l1.4-1.4q.275-.275.275-.7t-.275-.7t-.7-.275t-.7.275L14 8.6l-1.4-1.4q-.275-.275-.7-.275t-.7.275t-.275.7t.275.7l1.4 1.4l-1.4 1.4q-.275.275-.275.7t.275.7t.7.275t.7-.275" stroke-width="0.5" stroke="#000"/></svg></button>
+				
+			</div>
+			
+		</header>
+		
+		<div class="w3-container w3-border-bottom w3-margin-bottom">
+					
+			<div class="w3-row">
+				<a href="javascript:void(0)" onclick="openTab(event, \'tab01\');">
+					<div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-center w3-border-orange">Placeholders</div>
+				</a>
+				<a href="javascript:void(0)" onclick="openTab(event, \'tab02\');">
+					<div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-center">Code Snippets</div>
+				</a>
+				<a href="javascript:void(0)" onclick="openTab(event, \'tab03\');">
+					<div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-center">Tools</div>
+				</a>
+			</div>
+
+			<div id="tab01" class="w3-margin-top w3-margin-bottom mytabs">';
+				include 'tabs/Placeholders.php';
+			echo '	
+			</div>
+
+			<div id="tab02" class="w3-margin-top w3-margin-bottom mytabs" style="display:none">';
+				include 'tabs/Snippets.php';
+			echo '	
+			</div>
+
+			<div id="tab03" class="w3-margin-top w3-margin-bottom mytabs" style="display:none">';
+				include 'tabs/Tools.php';
+			echo '	
+			</div>
+			
+		</div>
+					
+		<footer class="w3-padding-top-32 margin-bottom-none">
+			<p class="w3-small clear w3-margin-bottom w3-margin-left">Made with <span class="credit-icon">❤️</span> especially for "<b>'.$USR.'</b>". Is this plugin useful to you?
+			<span class="w3-btn w3-khaki w3-border w3-border-red w3-round-xlarge"><a href="https://getsimple-ce.ovh/donate" target="_blank" class="donateButton"><b>Buy Us A Coffee </b><svg xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" fill-opacity="0" d="M17 14v4c0 1.66 -1.34 3 -3 3h-6c-1.66 0 -3 -1.34 -3 -3v-4Z"><animate fill="freeze" attributeName="fill-opacity" begin="0.8s" dur="0.5s" values="0;1"/></path><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="48" stroke-dashoffset="48" d="M17 9v9c0 1.66 -1.34 3 -3 3h-6c-1.66 0 -3 -1.34 -3 -3v-9Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.6s" values="48;0"/></path><path stroke-dasharray="14" stroke-dashoffset="14" d="M17 9h3c0.55 0 1 0.45 1 1v3c0 0.55 -0.45 1 -1 1h-3"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="14;0"/></path><mask id="lineMdCoffeeHalfEmptyFilledLoop0"><path stroke="#fff" d="M8 0c0 2-2 2-2 4s2 2 2 4-2 2-2 4 2 2 2 4M12 0c0 2-2 2-2 4s2 2 2 4-2 2-2 4 2 2 2 4M16 0c0 2-2 2-2 4s2 2 2 4-2 2-2 4 2 2 2 4"><animateMotion calcMode="linear" dur="3s" path="M0 0v-8" repeatCount="indefinite"/></path></mask><rect width="24" height="0" y="7" fill="currentColor" mask="url(#lineMdCoffeeHalfEmptyFilledLoop0)"><animate fill="freeze" attributeName="y" begin="0.8s" dur="0.6s" values="7;2"/><animate fill="freeze" attributeName="height" begin="0.8s" dur="0.6s" values="0;5"/></rect></g></svg></a></span></p>
+		</footer>
+
+	</div>
+
+	<script src="assets/prism.js"></script>
+	<script src="assets/scripts.js"></script>
+
+</html>
+    ';
+?>
