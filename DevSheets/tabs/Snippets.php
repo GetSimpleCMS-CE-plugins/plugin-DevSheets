@@ -40,3 +40,8 @@ RewriteRule ^(.*)$ http://example.com/$1 [L,R=301]
 <pre><code class="language-php" data-prismjs-copy="Copy">Redirect 301 /oldpage.html http://www.example.com/newpage.html
 Redirect 301 /oldpage2.html http://www.example.com/folder/
 </code></pre>
+
+<p class="title">Include .html extension in FancyURLs.<br> Use <span class="file">%slug%.html</span> and update the following:</p>
+<pre><code class="language-diff-php diff-highlight" data-prismjs-copy="Copy">- RewriteRule /?([A-Za-z0-9_-]+)/?$ index.php?id=$1 [QSA,L]
++ RewriteRule /?([A-Za-z0-9_-]+).html$ index.php?id=$1 [QSA,L]
+</code></pre>
