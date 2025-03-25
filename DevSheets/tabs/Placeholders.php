@@ -66,6 +66,11 @@ if(in_array(return_page_slug(),$slugs)){  ?>
 
 <hr class="style-eight">
 
+<h4>Custom 404 Page:</h4>
+<p>To add a customize 404 page, create a new page with slug "<b>404</b>" and the template of your choice. <br>This will override the default version.</p>
+
+<hr class="style-eight">
+
 <h4>Basic Template Example:</h4>
 <p> </p>
 <pre><code class="language-php line-numbers" data-prismjs-copy="Copy this template">&lt;!DOCTYPE html>
