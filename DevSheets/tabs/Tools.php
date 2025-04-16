@@ -21,6 +21,13 @@
 	</div>
 	
 	<div class="w3-container w3-quarter w3-panel xw3-border w3-center">
+		<a href="https://meettheipsums.com/"  target="_blank">
+			<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"><rect width="24" height="24" fill="none"/><path fill="#FFCC4D" d="M9 7h6a2 2 0 0 1 2 2v8h-2V9h-2v7h-2V9H9v8H7V9a2 2 0 0 1 2-2m3-5a10 10 0 0 1 10 10a10 10 0 0 1-10 10A10 10 0 0 1 2 12A10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8a8 8 0 0 0 8 8a8 8 0 0 0 8-8a8 8 0 0 0-8-8" stroke-width="0.5" stroke="#FFCC4D"/></svg>
+			<p>Meet the Ipsums</p>
+		</a>
+	</div>
+	
+	<div class="w3-container w3-quarter w3-panel xw3-border w3-center">
 		
 	</div>
 	
