@@ -22,6 +22,14 @@
 
 <hr class="style-eight">
 
+<h4>CSS version</h4>
+
+<p class="title">Add random CSS version to prevent caching</p>
+<pre><code class="language-php line-numbers" data-prismjs-copy="">&lt;link href="&lt;?php get_theme_url(); ?>/css/custom.css<mark>?v=&lt;?= rand(0,99999) ?></mark>" rel="stylesheet">
+</code></pre>
+
+<hr class="style-eight">
+
 <h4>Useful .htaccess Snippets</h4>
 
 <p class="title">Force www </p>
