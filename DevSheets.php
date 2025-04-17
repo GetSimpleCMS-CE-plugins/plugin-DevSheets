@@ -52,13 +52,16 @@ function devsheet() {
 					
 			<div class="w3-row">
 				<a href="javascript:void(0)" onclick="openTab(event, \'tab01\');">
-					<div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-center w3-border-orange">Placeholders</div>
+					<div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-center w3-border-orange"><svg xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;" width="1.3em" height="1.3em" viewBox="0 0 24 24"><rect width="24" height="24" fill="none"/><path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 8l-4 4l4 4m10-8l4 4l-4 4M14 4l-4 16"/></svg> Placeholders</div>
 				</a>
 				<a href="javascript:void(0)" onclick="openTab(event, \'tab02\');">
-					<div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-center">Code Snippets</div>
+					<div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-center"><svg xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;" width="1.3em" height="1.3em" viewBox="0 0 24 24"><rect width="24" height="24" fill="none"/><path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.009m3.986 0h.01m3.986 0H16m2 9c1.232 0 2.231-1.151 2.231-2.571c0-2.248-.1-3.742 1.442-5.52c.436-.502.436-1.316 0-1.818c-1.542-1.777-1.442-3.272-1.442-5.52C20.231 4.151 19.232 3 18 3M6 21c-1.232 0-2.231-1.151-2.231-2.571c0-2.248.1-3.742-1.442-5.52c-.436-.502-.436-1.316 0-1.818C3.835 9.353 3.769 7.84 3.769 5.57C3.769 4.151 4.768 3 6 3" color="#000"/></svg> Code Snippets</div>
 				</a>
 				<a href="javascript:void(0)" onclick="openTab(event, \'tab03\');">
-					<div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-center">Tools</div>
+					<div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-center"><svg xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;" width="1.3em" height="1.3em" viewBox="0 0 20 20"><rect width="20" height="20" fill="none"/><path fill="#000" d="M3 6a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v2.03a4.5 4.5 0 0 0-1-.004V7H4v7a2 2 0 0 0 2 2h3.492a2.5 2.5 0 0 0-.443 1H6a3 3 0 0 1-3-3zm10.044 3.587l-1.44-1.44a.5.5 0 0 0-.708.707l1.578 1.577q.232-.447.57-.844M6 4a2 2 0 0 0-2 2h12a2 2 0 0 0-2-2zm3.104 4.854a.5.5 0 1 0-.708-.708l-2.5 2.5a.5.5 0 0 0 0 .708l2.5 2.5a.5.5 0 0 0 .708-.708L6.957 11zm7.788.17c.366.042.471.48.21.742l-.975.975a1.507 1.507 0 1 0 2.132 2.132l.975-.975c.261-.261.7-.156.742.21a3.518 3.518 0 0 1-4.676 3.723l-2.726 2.727a1.507 1.507 0 1 1-2.132-2.132l2.726-2.726a3.518 3.518 0 0 1 3.724-4.676" stroke-width="0.5" stroke="#000"/></svg> Tools</div>
+				</a>
+				<a href="javascript:void(0)" onclick="openTab(event, \'tab04\');">
+					<div class="w3-quarter tablink w3-bottombar w3-hover-light-grey w3-center"><svg xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;" width="1.3em" height="1.3em" viewBox="0 0 24 24"><rect width="24" height="24" fill="none"/><path fill="#000" d="M8.465 11.293c1.133-1.133 3.109-1.133 4.242 0l.707.707l1.414-1.414l-.707-.707c-.943-.944-2.199-1.465-3.535-1.465s-2.592.521-3.535 1.465L4.929 12a5.01 5.01 0 0 0 0 7.071a4.98 4.98 0 0 0 3.535 1.462A4.98 4.98 0 0 0 12 19.071l.707-.707l-1.414-1.414l-.707.707a3.007 3.007 0 0 1-4.243 0a3.005 3.005 0 0 1 0-4.243z" stroke-width="0.5" stroke="#000"/><path fill="#000" d="m12 4.929l-.707.707l1.414 1.414l.707-.707a3.007 3.007 0 0 1 4.243 0a3.005 3.005 0 0 1 0 4.243l-2.122 2.121c-1.133 1.133-3.109 1.133-4.242 0L10.586 12l-1.414 1.414l.707.707c.943.944 2.199 1.465 3.535 1.465s2.592-.521 3.535-1.465L19.071 12a5.01 5.01 0 0 0 0-7.071a5.006 5.006 0 0 0-7.071 0" stroke-width="0.5" stroke="#000"/></svg> Links</div>
 				</a>
 			</div>
 
@@ -74,6 +77,11 @@ function devsheet() {
 			echo '
 			<div id="tab03" class="w3-margin-top w3-margin-bottom mytabs" style="display:none">';
 				include(GSPLUGINPATH .'DevSheets/tabs/Tools.php');
+			echo '</div>';
+			
+			echo '
+			<div id="tab04" class="w3-margin-top w3-margin-bottom mytabs" style="display:none">';
+				include(GSPLUGINPATH .'DevSheets/tabs/Links.php');
 			echo '</div>';
 			echo '
 		</div>
