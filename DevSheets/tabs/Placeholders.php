@@ -73,7 +73,9 @@ if(in_array(return_page_slug(),$slugs)){  ?>
 
 <h4>Basic Template Example:</h4>
 <p> </p>
-<pre><code class="language-php line-numbers" data-prismjs-copy="Copy this template">&lt;!DOCTYPE html>
+<pre><code class="language-php line-numbers" data-prismjs-copy="Copy this template"><mark>&lt;?php if (!defined('IN_GS')) { die('you cannot load this page directly.'); }?></mark>
+
+&lt;!DOCTYPE html>
 &lt;html lang="en">
 	&lt;head>
 		&lt;meta http-equiv="content-type" content="text/html; charset=utf-8" />
