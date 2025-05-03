@@ -2,9 +2,9 @@
 <p>Various template placeholders. More info can be found by visiting the <a href="https://github.com/GetSimpleCMS-CE/GetSimpleCMS-CE/wiki/Template-Tags" target="_blank">Wiki <span class="link"></span></a>.</p>
 
 <h4>Common Template Tags:</h4>	
-<pre><code class="language-php" data-prismjs-copy="">&lt;?php get_site_name(); ?>
+<pre><code class="language-php" data-prismjs-copy="">&lt;?php get_header(); ?>
 
-&lt;?php get_header(); ?>
+&lt;?php get_site_name(); ?>
 
 &lt;?php get_site_url(); ?>
 
@@ -84,6 +84,8 @@ if(in_array(return_page_slug(),$slugs)){  ?>
 		&lt;meta http-equiv="last-modified" content=" <mark>&lt;?php get_page_date('F jS, Y'); ?></mark> ">
 		
 		&lt;link rel="stylesheet" href="<mark>&lt;?php get_theme_url(); ?></mark>/css/MyStyleSheet.css">
+
+		<mark>&lt;?php get_header(); ?></mark>
 	&lt;/head>
 	
 	&lt;body>
@@ -108,6 +110,8 @@ if(in_array(return_page_slug(),$slugs)){  ?>
 	&lt;/body>
 	
 	&lt;script src="<mark>&lt;?php get_theme_url(); ?></mark>/js/MyScripts.js">&lt;/script>
+
+	<mark>&lt;?php get_footer(); ?></mark>
 &lt;/html>
 
 
