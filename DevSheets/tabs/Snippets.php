@@ -49,7 +49,7 @@ RewriteRule ^(.*)$ http://example.com/$1 [L,R=301]
 Redirect 301 /oldpage2.html http://www.example.com/folder/
 </code></pre>
 
-<p class="title">Include .html extension in FancyURLs.<br> Use <span class="file">%slug%.html</span> and add the following below the <span class="file">RewriteBase</span> line, near the end of your .htaccess:</p>
+<p class="title">Include .html extension in FancyURLs.<br> Use <span class="file">%slug%.html</span> and add the following below the <span class="file">RewriteBase</span> line, near the end of your <b>.htaccess</b>:</p>
 <pre><code class="language-php" data-prismjs-copy="Copy"># Handle .html requests
 RewriteRule ^([A-Za-z0-9_-]+)\.html$ index.php?id=$1 [QSA,L]
 
@@ -57,7 +57,6 @@ RewriteRule ^([A-Za-z0-9_-]+)\.html$ index.php?id=$1 [QSA,L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^([A-Za-z0-9_-]+)$ $1.html [L,R=301]
-
 </code></pre>
 
 <hr class="style-eight">
