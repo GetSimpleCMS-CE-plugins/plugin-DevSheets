@@ -7,7 +7,7 @@ $thisfile = basename(__FILE__, ".php");
 register_plugin(
     $thisfile, // Plugin id
     'Dev Sheets', // Plugin name
-    '1.1', // Plugin version
+    '1.2', // Plugin version
     'CE Team', // Plugin author
     'https://www.getsimple-ce.ovh/', // author website
     'Cheat Sheets for devs. Small list of common placeholders and other miscellaneous code snippets and tools.', // Plugin description

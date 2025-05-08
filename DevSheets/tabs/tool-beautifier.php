@@ -16,24 +16,27 @@
     <style>
         .editor-container { border: 1px solid #ddd; margin-bottom: 10px; height: 400px; background: white; }
         .button-group { margin: 10px 0; display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
-        button { padding: 8px 12px; cursor: pointer; background: #4a6fa5; color: white; border: none; border-radius: 4px; }
-        button:hover { background: #3a5a8f; }
+        .beautifier button { padding: 8px 12px; cursor: pointer; background: #4a6fa5; color: white; border: none; border-radius: 4px; }
+        .beautifier button:hover { background: #3a5a8f; }
         .file-input { display: none; }
         .file-name { margin-left: 10px; font-style: italic; color: #666; }
-        select { padding: 7px 10px; border-radius: 4px; border: 1px solid #ccc; background: white; }
+        .beautifier select { padding: 7px 10px; border-radius: 4px; border: 1px solid #ccc; background: white; }
         .status { margin-top: 10px; color: #666; font-size: 0.9em; }
-        .CodeMirror { height: 100% !important; }
+        .beautifier .CodeMirror { height: 100% !important; }
     </style>
-    
+	
+<div class="w3-container beautifier">
+	<h3 class="w3-center w3-margin"><svg xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle" width="1.5em" height="1.5em" viewBox="0 0 20 20"><rect width="20" height="20" fill="none"/><path fill="#3333FF" d="M2.75 4.5a.75.75 0 0 0 0 1.5h14.5a.75.75 0 0 0 0-1.5zm0 3a.75.75 0 0 0 0 1.5h8.5a.75.75 0 0 0 0-1.5zm0 3a.75.75 0 0 0 0 1.5h6.633a1.5 1.5 0 0 1-.284-1.5zm0 3h6.628L7.876 15H2.75a.75.75 0 0 1 0-1.5m11.746-6.061a.5.5 0 0 0-.992 0l-.098.791a2.5 2.5 0 0 1-2.176 2.176l-.791.098a.5.5 0 0 0 0 .992l.791.098a2.5 2.5 0 0 1 2.176 2.176l.098.791a.5.5 0 0 0 .992 0l.098-.791a2.5 2.5 0 0 1 2.176-2.176l.791-.098a.5.5 0 0 0 0-.992l-.791-.098a2.5 2.5 0 0 1-2.176-2.176zm-2.643 5.708a.5.5 0 0 1 0 .707l-4 3.996a.5.5 0 0 1-.706-.707l3.999-3.997a.5.5 0 0 1 .707 0" stroke-width="0.5" stroke="#3333FF"/></svg> Code Minifier/Beautifier</h3>
+	
     <div class="button-group">
 		
-        <button class="w3-asphault" id="uploadBtn"><svg xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle" width="1.3em" height="1.3em" viewBox="0 0 24 24"><rect width="24" height="24" fill="none"/><path fill="#fff" d="M6 20q-.825 0-1.412-.587T4 18v-2q0-.425.288-.712T5 15t.713.288T6 16v2h12v-2q0-.425.288-.712T19 15t.713.288T20 16v2q0 .825-.587 1.413T18 20zm5-12.15L9.125 9.725q-.3.3-.712.288T7.7 9.7q-.275-.3-.288-.7t.288-.7l3.6-3.6q.15-.15.325-.212T12 4.425t.375.063t.325.212l3.6 3.6q.3.3.288.7t-.288.7q-.3.3-.712.313t-.713-.288L13 7.85V15q0 .425-.288.713T12 16t-.712-.288T11 15z" stroke-width="0.5" stroke="#fff"/></svg> Upload File</button>
+        <button class="w3-btn w3-round w3-blue" id="uploadBtn"><svg xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle" width="1.3em" height="1.3em" viewBox="0 0 24 24"><rect width="24" height="24" fill="none"/><path fill="#fff" d="M6 20q-.825 0-1.412-.587T4 18v-2q0-.425.288-.712T5 15t.713.288T6 16v2h12v-2q0-.425.288-.712T19 15t.713.288T20 16v2q0 .825-.587 1.413T18 20zm5-12.15L9.125 9.725q-.3.3-.712.288T7.7 9.7q-.275-.3-.288-.7t.288-.7l3.6-3.6q.15-.15.325-.212T12 4.425t.375.063t.325.212l3.6 3.6q.3.3.288.7t-.288.7q-.3.3-.712.313t-.713-.288L13 7.85V15q0 .425-.288.713T12 16t-.712-.288T11 15z" stroke-width="0.5" stroke="#fff"/></svg> Upload File</button>
 	
-        <button class="w3-green" id="beautify"><svg xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle" width="1.2em" height="1.2em" viewBox="0 0 14 14"><rect width="14" height="14" fill="none"/><path fill="#fff" fill-rule="evenodd" d="M0 1A.75.75 0 0 1 .75.25h12.5a.75.75 0 0 1 0 1.5H.75A.75.75 0 0 1 0 1m3.25 2.25a.75.75 0 0 0 0 1.5h10a.75.75 0 0 0 0-1.5zM5.5 7a.75.75 0 0 1 .75-.75h7a.75.75 0 0 1 0 1.5h-7A.75.75 0 0 1 5.5 7m-3 3a.75.75 0 0 1 .75-.75h10a.75.75 0 0 1 0 1.5h-10A.75.75 0 0 1 2.5 10M.75 12.25a.75.75 0 0 0 0 1.5h12.5a.75.75 0 0 0 0-1.5z" clip-rule="evenodd" stroke-width="0.5" stroke="#fff"/></svg> Beautify</button>
+        <button class="w3-btn w3-round w3-blue-gray" id="beautify"><svg xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle" width="1.2em" height="1.2em" viewBox="0 0 14 14"><rect width="14" height="14" fill="none"/><path fill="#fff" fill-rule="evenodd" d="M0 1A.75.75 0 0 1 .75.25h12.5a.75.75 0 0 1 0 1.5H.75A.75.75 0 0 1 0 1m3.25 2.25a.75.75 0 0 0 0 1.5h10a.75.75 0 0 0 0-1.5zM5.5 7a.75.75 0 0 1 .75-.75h7a.75.75 0 0 1 0 1.5h-7A.75.75 0 0 1 5.5 7m-3 3a.75.75 0 0 1 .75-.75h10a.75.75 0 0 1 0 1.5h-10A.75.75 0 0 1 2.5 10M.75 12.25a.75.75 0 0 0 0 1.5h12.5a.75.75 0 0 0 0-1.5z" clip-rule="evenodd" stroke-width="0.5" stroke="#fff"/></svg> Beautify</button>
         
-		<button class="w3-teal" id="minify"><svg xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle" width="1.05em" height="1.2em" viewBox="0 0 448 512"><rect width="448" height="512" fill="none"/><path fill="#fff" d="M448 64c0-17.7-14.3-32-32-32H32C14.3 32 0 46.3 0 64s14.3 32 32 32h384c17.7 0 32-14.3 32-32m0 256c0-17.7-14.3-32-32-32H32c-17.7 0-32 14.3-32 32s14.3 32 32 32h384c17.7 0 32-14.3 32-32M0 192c0 17.7 14.3 32 32 32h384c17.7 0 32-14.3 32-32s-14.3-32-32-32H32c-17.7 0-32 14.3-32 32m448 256c0-17.7-14.3-32-32-32H32c-17.7 0-32 14.3-32 32s14.3 32 32 32h384c17.7 0 32-14.3 32-32" stroke-width="20" stroke="#fff"/></svg> Minify</button>
+		<button class="w3-btn w3-round w3-teal" id="minify"><svg xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle" width="1.05em" height="1.2em" viewBox="0 0 448 512"><rect width="448" height="512" fill="none"/><path fill="#fff" d="M448 64c0-17.7-14.3-32-32-32H32C14.3 32 0 46.3 0 64s14.3 32 32 32h384c17.7 0 32-14.3 32-32m0 256c0-17.7-14.3-32-32-32H32c-17.7 0-32 14.3-32 32s14.3 32 32 32h384c17.7 0 32-14.3 32-32M0 192c0 17.7 14.3 32 32 32h384c17.7 0 32-14.3 32-32s-14.3-32-32-32H32c-17.7 0-32 14.3-32 32m448 256c0-17.7-14.3-32-32-32H32c-17.7 0-32 14.3-32 32s14.3 32 32 32h384c17.7 0 32-14.3 32-32" stroke-width="20" stroke="#fff"/></svg> Minify</button>
         
-		<button class="w3-blue-gray" id="downloadBtn"><svg xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle" width="1.3em" height="1.3em" viewBox="0 0 24 24"><rect width="24" height="24" fill="none"/><path fill="#fff" d="M12 15.575q-.2 0-.375-.062T11.3 15.3l-3.6-3.6q-.3-.3-.288-.7t.288-.7q.3-.3.713-.312t.712.287L11 12.15V5q0-.425.288-.712T12 4t.713.288T13 5v7.15l1.875-1.875q.3-.3.713-.288t.712.313q.275.3.288.7t-.288.7l-3.6 3.6q-.15.15-.325.213t-.375.062M6 20q-.825 0-1.412-.587T4 18v-2q0-.425.288-.712T5 15t.713.288T6 16v2h12v-2q0-.425.288-.712T19 15t.713.288T20 16v2q0 .825-.587 1.413T18 20z" stroke-width="0.5" stroke="#fff"/></svg> Download File</button>
+		<button class="w3-btn w3-round w3-green" id="downloadBtn"><svg xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle" width="1.3em" height="1.3em" viewBox="0 0 24 24"><rect width="24" height="24" fill="none"/><path fill="#fff" d="M12 15.575q-.2 0-.375-.062T11.3 15.3l-3.6-3.6q-.3-.3-.288-.7t.288-.7q.3-.3.713-.312t.712.287L11 12.15V5q0-.425.288-.712T12 4t.713.288T13 5v7.15l1.875-1.875q.3-.3.713-.288t.712.313q.275.3.288.7t-.288.7l-3.6 3.6q-.15.15-.325.213t-.375.062M6 20q-.825 0-1.412-.587T4 18v-2q0-.425.288-.712T5 15t.713.288T6 16v2h12v-2q0-.425.288-.712T19 15t.713.288T20 16v2q0 .825-.587 1.413T18 20z" stroke-width="0.5" stroke="#fff"/></svg> Download File</button>
 		
         <input type="file" id="fileInput" class="file-input" accept=".html,.php,.css,.js,.txt">
         <span id="fileName" class="file-name"></span>
@@ -73,7 +76,7 @@
 &lt;/html&gt;</textarea>
     </div>
     <div id="status" class="status"></div>
-
+</div>
     <script>
         // Initialize CodeMirror with tab indentation
         const editor = CodeMirror.fromTextArea(document.getElementById('editor'), {

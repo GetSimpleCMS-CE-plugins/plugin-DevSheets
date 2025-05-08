@@ -1,10 +1,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
     <style>
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
         .file-upload {
             margin-bottom: 20px;
             padding: 20px;
@@ -22,7 +18,7 @@
         .schema-panel {
             width: 300px;
         }
-        textarea {
+        .sqlite textarea {
             width: 95%;
             height: 150px;
             font-family: monospace;
@@ -133,8 +129,9 @@
     </style>
 	
 	
-    <div class="container">
-        
+    <div class="w3-container sqlite">
+        <h3 class="w3-center w3-margin"><svg xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle" width="1.08em" height="1.2em" viewBox="0 0 458 512"><rect width="458" height="512" fill="none"/><path fill="currentColor" d="m228.502 233.071l-14.428 45.75c-7.693 28.4-7.039 37.358-3.137 43.966c.963 1.624 3.597 6.94 7.278 21.14c5.344 20.554 10.05 51.587 10.165 53.072c-.773 18.97-.355 39.069 1.179 58.313H39.147C17.617 455.312 0 437.695 0 416.166V61.88c0-21.53 17.616-39.15 39.147-39.15h293.008c-44.876 47.605-89.341 137.936-103.653 210.341M435.338 11.136c53.695 47.899.376 157.402-48.565 234.483c-35.586 11.437-77.064 36.696-77.064 36.696s3.45-1.832 16.255-7.203c8.68-3.649 34.598-9.811 50.381-13.41c-26.349 39.726-48.896 67.532-48.896 67.532s-45.97 18.681-60.187 62.14c8.24-46.357 21.913-94.74 41.208-146.3c17.232-46.042 74.796-170.377 117.328-208.788c-46.664 37.193-97.65 115.072-134.4 212.138c-21.751 64.3-33.523 125.992-35.44 177.149c-1.267 33.467 1.626 62.488 8.749 84.632L261.414 512c-6.987-18.132-13.399-49.997-11.865-115.295c-.23-2.913-.367-4.806-.367-4.806s-4.242-28.568-10.343-52.035c-2.702-10.417-5.778-19.836-9.007-25.295c-1.664-2.817.18-14.388 4.824-31.527c7.864 13.692 16.348 28.515 19.607 40.643c0 0-6.284-32.33-16.595-51.197c2.26-7.627 4.96-16.057 8.015-25.07c7.605 13.3 15.361 25.955 18.455 38.63c-3.384-16.193-7.965-32.32-15.101-48.307c12.97-67.496 54.719-155.876 99.696-203.59c24.007-25.617 57.092-48.544 86.605-23.015"/></svg> SQLite Editor</h3>
+		
         <div class="file-upload w3-margin">
             <h2>Upload SQLite Database</h2>
             <input type="file" id="db-upload" accept=".db,.sqlite,.sqlite3">
@@ -147,19 +144,19 @@
                 <h2>SQL Query</h2>
                 <textarea id="sql-query" placeholder="SELECT * FROM table_name"></textarea>
                 <div class="action-buttons">
-                    <button id="execute-query" class="w3-btn w3-blue">Execute</button>
-                    <button id="clear-query" class="secondary">Clear</button>
-                    <button id="add-row-btn" class="w3-btn w3-orange" disabled>Add New Row</button>
-                    <button id="cancel-changes" class="w3-btn w3-red" disabled>Cancel Changes</button>
-                    <button id="save-changes" class="w3-btn w3-green" disabled>Save Changes</button>
+                    <button id="execute-query" class="w3-btn w3-round w3-blue">Execute</button>
+                    <button id="clear-query" class="w3-btn w3-round w3-border w3-border-grey w3-light-grey">Clear</button>
+                    <button id="add-row-btn" class="w3-btn w3-round w3-orange" disabled>Add New Row</button>
+                    <button id="cancel-changes" class="w3-btn w3-round w3-red" disabled>Cancel Changes</button>
+                    <button id="save-changes" class="w3-btn w3-round w3-green" disabled>Save Changes</button>
                 </div>
                 <div id="query-status"></div>
                 
                 <div class="new-row-form" id="new-row-form">
                     <h3>Add New Row</h3>
                     <div id="new-row-fields"></div>
-                    <button id="confirm-add-row" class="w3-btn w3-orange">Add Row</button>
-                    <button id="cancel-add-row" class="w3-btn w3-red">Cancel</button>
+                    <button id="confirm-add-row" class="w3-btn w3-round w3-orange">Add Row</button>
+                    <button id="cancel-add-row" class="w3-btn w3-round w3-red">Cancel</button>
                 </div>
                 
                 <h2>Results</h2>
@@ -177,8 +174,8 @@
                 <div class="export-options">
                     <h3>Export Options</h3>
                     <!--button id="export-sql" class="secondary">Export as SQL</button-->
-                    <button id="export-csv" class="w3-btn w3-green">Export as CSV</button>
-                    <button id="export-db" class="w3-btn w3-green">Export Database</button>
+                    <button id="export-csv" class="w3-btn w3-round w3-green">Export as CSV</button>
+                    <button id="export-db" class="w3-btn w3-round w3-green">Export Database</button>
                 </div>
             </div>
         </div>
