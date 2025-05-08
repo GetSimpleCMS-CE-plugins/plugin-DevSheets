@@ -38,26 +38,26 @@
 <h4>Conditional Includes:</h4>
 
 <p class="title">By Template</p>
-<pre><code class="language-php" data-prismjs-copy="">&lt;?php if ($template_file == 'name-of-template.php') { ?>
+<pre><code class="language-php" data-prismjs-copy="Copy this code">&lt;?php if ($template_file == 'name-of-template.php') { ?>
 	xyz
 &lt;?php } ?>
 </code></pre>
 
 <p class="title">By Slug</p>
-<pre><code class="language-php" data-prismjs-copy="">&lt;?php if (return_page_slug() == 'contact') { ?>
+<pre><code class="language-php" data-prismjs-copy="Copy this code">&lt;?php if (return_page_slug() == 'contact') { ?>
 	123
 &lt;?php } ?>
 </code></pre>
 
 <p class="title">As an Array</p>
-<pre><code class="language-php" data-prismjs-copy="">&lt;?php $slugs = ['index','services','contact']; 
+<pre><code class="language-php" data-prismjs-copy="Copy this code">&lt;?php $slugs = ['index','services','contact']; 
 if(in_array(return_page_slug(),$slugs)){  ?>
 	xyz
 &lt;?php } ?>
 </code></pre>
 
 <p class="title">If Else</p>
-<pre><code class="language-php" data-prismjs-copy="">&lt;?php if (return_page_slug() == 'index') { ?>
+<pre><code class="language-php" data-prismjs-copy="Copy this code">&lt;?php if (return_page_slug() == 'index') { ?>
 	456
 &lt;?php } else{ ?>
 	fgh
