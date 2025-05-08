@@ -1,5 +1,9 @@
 /* Fix conflicts with base css */
 
+.bodycontent {
+  grid-template-columns: 100% 0%;
+}
+
 a {text-decoration:none !important;font-weight:normal;}
 .wrapper footer p a {font-weight:normal !important;}
 
@@ -54,18 +58,15 @@ hr.style-eight:after {
 
 .w3-container::after, .w3-container::before, .w3-panel::after, .w3-panel::before, .w3-row::after, .w3-row::before, .w3-row-padding::after, .w3-row-padding::before, .w3-cell-row::before, .w3-cell-row::after, .w3-clear::after, .w3-clear::before, .w3-bar::before, .w3-bar::after {
   content: "";
-
   display: table;
-
   clear: both;
+}
 
-}
-element {
-}
 .w3-container, .w3-panel {
   padding: 0.01em 16px;
 
 }
+
 @media (min-width: 601px) {
   .w3-col.m3, .w3-quarter {
     width: 20%;
@@ -85,5 +86,3 @@ element {
 	padding:2px 4px;
 	border-radius:5px;
 }
-
-
