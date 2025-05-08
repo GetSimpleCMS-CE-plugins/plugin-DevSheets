@@ -11,7 +11,7 @@ register_plugin(
     'CE Team', // Plugin author
     'https://www.getsimple-ce.ovh/', // author website
     'Cheat Sheets for devs. Small list of common placeholders and other miscellaneous code snippets and tools.', // Plugin description
-    'full', // page type - on which admin tab to display
+    'devsheet_full', // page type - on which admin tab to display
     'devsheet' // main function (administration)
 );
 
