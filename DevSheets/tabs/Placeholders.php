@@ -58,9 +58,9 @@ if(in_array(return_page_slug(),$slugs)){  ?>
 
 <p class="title">If Else</p>
 <pre><code class="language-php" data-prismjs-copy="Copy this code">&lt;?php if (return_page_slug() == 'index') { ?>
-	456
+	123
 &lt;?php } else{ ?>
-	fgh
+	xyz
 &lt;?php } ?>
 </code></pre>
 
