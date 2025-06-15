@@ -4,6 +4,8 @@
   grid-template-columns: 100% 0%;
 }
 
+#sidebar{display:none;}
+
 a {text-decoration:none !important;font-weight:normal;}
 .wrapper footer p a {font-weight:normal !important;}
 
