@@ -109,12 +109,7 @@
 <blockquote>
 <p>🔧 Change <code>YourDomain.com</code> to your real domain.</p>
 </blockquote>
-<h3 id="-7-csp-reporting-optional-">📊 7. CSP Reporting (Optional)</h3>
-<p>Optional section to <strong>log Content Security Policy violations</strong> — useful when testing your CSP.</p>
-<ul>
-<li>Add a <code>/csp-report-endpoint</code> script or use a third-party service (like <a href="https://report-uri.com" target="_blank">report-uri.com</a>).  </li>
-<li>Start by testing with the “Report-Only” version to ensure nothing breaks before enforcing the full CSP.</li>
-</ul>
+
 <h3 id="-benefits">✅ Benefits</h3>
 <ul>
 <li><strong>Faster page loads</strong> (compression + caching)  </li>
@@ -191,8 +186,8 @@
   Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
 
   # Content Security Policy (CSP)
-  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.google.com https://maps.googleapis.com https://cdn.jsdelivr.net https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://www.google.com https://maps.googleapis.com https://tile.openstreetmap.org; font-src 'self' https://fonts.gstatic.com; frame-src 'self' https://www.google.com https://maps.googleapis.com https://www.openstreetmap.org https://www.youtube.com https://player.vimeo.com; media-src 'self' data:; connect-src 'self';"
-
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.google.com https://maps.googleapis.com https://cdn.jsdelivr.net https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://www.google.com https://maps.googleapis.com https://tile.openstreetmap.org; font-src 'self' https://fonts.gstatic.com; frame-src 'self' https://www.google.com https://maps.googleapis.com https://www.openstreetmap.org https://www.youtube.com https://player.vimeo.com; media-src 'self' data:; connect-src 'self';"
+	
   # Referrer policy
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
 
@@ -263,17 +258,6 @@
 #  RewriteCond %{HTTP_REFERER} !^https?://(www\.)?YourDomain\.com [NC]
 #  RewriteRule \.(jpg|jpeg|png|gif|webp|avif)$ - [F]
 #&lt;/IfModule>
-
-# ----------------------------------------------------------
-# 7. CSP Reporting (Optional Debug)
-# ----------------------------------------------------------
-# Uncomment to test CSP violations:
-# Header always set Content-Security-Policy-Report-Only "default-src 'self'; report-uri /csp-report-endpoint"
-
-# Optional endpoint for CSP reports:
-#&lt;Files "csp-report-endpoint">
-#  Require all granted
-#&lt;/Files>
 
 # ----------------------------------------------------------
 </code></pre>
@@ -459,3 +443,4 @@ RewriteRule ^([A-Za-z0-9_-]+)$ $1.html [L,R=301]
         }
     }
 </code></pre>
+
