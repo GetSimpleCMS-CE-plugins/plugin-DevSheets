@@ -186,8 +186,26 @@
   Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
 
   # Content Security Policy (CSP)
-  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.google.com https://maps.googleapis.com https://cdn.jsdelivr.net https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://www.google.com https://maps.googleapis.com https://tile.openstreetmap.org; font-src 'self' https://fonts.gstatic.com; frame-src 'self' https://www.google.com https://maps.googleapis.com https://www.openstreetmap.org https://www.youtube.com https://player.vimeo.com; media-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self'; connect-src 'self';"
-	
+  Header always set Content-Security-Policy "default-src 'self'; \
+  script-src 'self' 'unsafe-inline' 'unsafe-eval' \
+    https://www.google.com https://www.gstatic.com https://www.google.com/recaptcha/ \
+    https://maps.googleapis.com https://ajax.googleapis.com \
+    https://cdn.jsdelivr.net https://cdnjs.cloudflare.com \
+    https://unpkg.com https://unpkg.com/leaflet@* https://unpkg.com/leaflet.*; \
+  style-src 'self' 'unsafe-inline' \
+    https://fonts.googleapis.com https://cdnjs.cloudflare.com \
+    https://unpkg.com https://unpkg.com/leaflet@* https://unpkg.com/leaflet.*; \
+  img-src 'self' data: \
+    https://www.google.com https://maps.googleapis.com \
+    https://tile.openstreetmap.org https://*.tile.openstreetmap.org \
+    https://a.tile.openstreetmap.org https://b.tile.openstreetmap.org \
+    https://c.tile.openstreetmap.org https://api.iconify.design; \
+  font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; \
+  frame-src 'self' \
+    https://www.google.com https://maps.googleapis.com \
+    https://www.openstreetmap.org https://www.youtube.com https://player.vimeo.com; \
+  media-src 'self' data:; \
+  object-src 'none'; base-uri 'self'; form-action 'self'; connect-src 'self';"	
   # Referrer policy
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
 
@@ -443,4 +461,5 @@ RewriteRule ^([A-Za-z0-9_-]+)$ $1.html [L,R=301]
         }
     }
 </code></pre>
+
 
