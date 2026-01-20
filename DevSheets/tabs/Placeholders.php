@@ -64,10 +64,128 @@ if(in_array(return_page_slug(),$slugs)){  ?>
 &lt;?php } ?>
 </code></pre>
 
+<p class="title">Is HomePage</p>
+<pre><code class="language-php" data-prismjs-copy="Copy this code">&lt;?php if (is_homepage()) : ?>
+	&lt;div class="hero">
+		&lt;h1>Welcome to our website!&lt;/h1>
+	&lt;/div>
+&lt;?php else : ?>
+	&lt;div class="page-header">
+		&lt;h1>&lt;?php get_page_title(); ?>&lt;/h1>
+	&lt;/div>
+&lt;?php endif; ?>
+</code></pre>
+
+<p class="title">Is Parent</p>
+<pre><code class="language-php" data-prismjs-copy="Copy this code">&lt;?php if (is_parent('services')) : ?>
+    &lt;div class="services-child-header">
+        &lt;p>You are viewing one of our services&lt;/p>
+    &lt;/div>
+&lt;?php endif; ?>
+</code></pre>
+
+<hr class="style-eight">
+
+<h4>Custom Menu:</h4>
+<p>Personalize and add to your themes "<b>functions.php</b>" file.</p>
+<p>Replace <span class="tpl">&lt;?php get_navigation(); ?></span> with <span class="cke">&lt;?php get_my_navigation(); ?></span> in your theme.</p>
+
+
+<pre><code class="language-php" data-prismjs-copy="Copy this code">&lt;?php 
+function build_my_menu($parentId, $menuTree, $currentpage, $classPrefix, $isSubmenu = false) {
+	if (!isset($menuTree[$parentId])) {
+		return '';
+	}
+
+	$menu = $isSubmenu ? "\n<ul class=\" subMenu \">\n" : ""; 
+	foreach ($menuTree[$parentId] as $page) {
+		$url_nav = $page['url'];
+		$classes = !empty($page['parent']) ? $classPrefix . $page['parent'] . " " : "";
+		$classes .= $classPrefix . $url_nav;
+		
+		// Check if the current page has sub-pages
+		$hasSubmenu = isset($menuTree[$url_nav]);
+		if ($hasSubmenu) {
+			$classes .= " wSub "; // Add the "with-sub-pages" class to <li>
+		}
+
+		// Add a class for <li> elements within a submenu
+		if ($isSubmenu) {
+			$classes .= " subItem "; // Add the "submenu-item" class to <li>
+		} else {
+			// Add a class for first-level <li> items
+			$classes .= " topL "; // Add the "top-level" class to <li>
+		}
+
+		if ($currentpage == $url_nav) {
+			$classes .= " current active "; // Add the "current active" class to <li>
+		}
+
+		$menuText = !empty($page['menu']) ? $page['menu'] : (!empty($page['title']) ? $page['title'] : $url_nav);
+		$pageTitle = !empty($page['title']) ? $page['title'] : $page['menu'];
+		
+		// Add classes to the <a> element
+		$linkClasses = [];
+		if (!$isSubmenu) {
+			$linkClasses[] = " topL-a "; // Add class to top-level <a>
+		}
+		if ($hasSubmenu) {
+			$linkClasses[] = " wSub-a "; // Add class to <a> with submenus
+		}
+		if ($isSubmenu) {
+			$linkClasses[] = " subItem-a "; // Add class to submenu <a>
+		}
+		if ($currentpage == $url_nav) {
+			$linkClasses[] = " cur-act-a "; // Add class to active <a>
+		}
+
+		$menu .= '<li class="' . trim($classes) . '"><a href="' . find_url($page['url'], $page['parent']) . '" class="' . implode(" ", $linkClasses) . '" title="' . encode_quotes(cl($pageTitle)) . '">' . strip_decode($menuText) . '</a>';
+
+		// Add submenu if exists
+		$subMenu = build_my_menu($url_nav, $menuTree, $currentpage, $classPrefix, true);
+		if (!empty($subMenu)) {
+			$menu .= $subMenu;
+		}
+
+		$menu .= "</li>\n";
+	}
+	$menu .= $isSubmenu ? "</ul>\n" : ""; 
+	return $menu;
+}
+
+function get_my_navigation($currentpage = "", $classPrefix = "") {
+	global $pagesArray, $id;
+	if (empty($currentpage)) {
+		$currentpage = $id;
+	}
+
+	$pagesSorted = subval_sort($pagesArray, 'menuOrder');
+
+	$menuTree = [];
+	foreach ($pagesSorted as $page) {
+		if ($page['menuStatus'] == 'Y') {
+			$parent = !empty($page['parent']) ? $page['parent'] : 0;
+			$menuTree[$parent][] = $page;
+		}
+	}
+
+	if (!empty($menuTree)) {
+		$menuHtml = build_my_menu(0, $menuTree, $currentpage, $classPrefix, false);
+		echo exec_filter('menuitems', $menuHtml);
+	} else {
+		echo "<!-- No menu items -->";
+	}
+}
+</code></pre>
+
 <hr class="style-eight">
 
 <h4>Custom 404 Page:</h4>
 <p>To add a customize 404 page, create a new page with slug "<b>404</b>" and the template of your choice. <br>This will override the default version.</p>
+<p>Include the following into theme to generate a sitemap (where 3 is the Maximum nesting level to display):</p>
+
+<pre><code class="language-php" data-prismjs-copy="Copy this code">&lt;?php echo get_sitemap('', 0, 3); ?>
+</code></pre>
 
 <hr class="style-eight">
 
