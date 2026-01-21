@@ -84,6 +84,37 @@ if(in_array(return_page_slug(),$slugs)){  ?>
 &lt;?php endif; ?>
 </code></pre>
 
+<p class="title">If Field Has Content</p>
+<pre><code class="language-php" data-prismjs-copy="Copy this code">&lt;?php
+	ob_start();
+	get_page_content(); // Field 
+	$content = trim(ob_get_clean());
+
+	if ($content !== '') {
+		echo '&lt;div>';
+		echo $content;
+		echo '&lt;/div>';
+	}
+?>
+
+</code></pre>
+
+<p class="title">If Field Has Content, Else</p>
+<pre><code class="language-php" data-prismjs-copy="Copy this code">&lt;?php
+	ob_start();
+	multiFields('Imagen-de-Contenido'); // Field & Value
+	$content = trim(ob_get_clean());
+
+	if ($content !== '') {
+		echo '&lt;img src="';
+		echo $content;
+		echo '" alt="" />';
+	}else{
+		echo '&lt;img src="' . $SITEURL . 'theme/' . $TEMPLATE . '/images/default.jpg" alt="" />';
+	}
+?>
+</code></pre>
+
 <hr class="style-eight">
 
 <h4>Custom Menu:</h4>
