@@ -115,6 +115,26 @@ if(in_array(return_page_slug(),$slugs)){  ?>
 ?>
 </code></pre>
 
+<p class="title">If Field with nested content</p>
+<pre><code class="language-php" data-prismjs-copy="Copy this code">&lt;?php
+$maintitle = r_multiFields('MainTitle');
+$subtitle = r_multiFields('SubTitle');
+
+if (trim($maintitle) !== ''): ?>
+	&lt;div class="col col-lg-8 text-center fit-videos md-mb-50px sm-mb-30px">
+
+		&lt;?php echo $maintitle; ?>
+
+		&lt;?php if (trim($subtitle) !== ''): ?>
+			&lt;div class="text-dark-gray fs-18 fw-600 mt-6">
+				&lt;?php echo $subtitle; ?>
+			&lt;/div>
+		&lt;?php endif; ?>
+
+	&lt;/div>
+&lt;?php endif; ?>
+</code></pre>
+
 <hr class="style-eight">
 
 <h4>Custom Menu:</h4>
