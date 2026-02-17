@@ -298,8 +298,7 @@
 	
 	<script>
 	// SVG Template
-	const svgTemplate = `
-<svg xmlns="http://www.w3.org/2000/svg" lang="en-US" aria-labelledby="title" viewBox="0 0 $viewbox_width $viewbox_height">
+	const svgTemplate = `<svg xmlns="http://www.w3.org/2000/svg" lang="en-US" aria-labelledby="title" viewBox="0 0 $viewbox_width $viewbox_height">
 	<title id="title">$title $email</title>
 	<defs>
 		<style type="text/css"><![CDATA[
@@ -335,8 +334,7 @@
 		<rect />
 		<text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle">$email</text>
 	</a>
-</svg>
-`;
+</svg>`;
 
 	// Function to generate SVG from form data
 	function generateSVG() {

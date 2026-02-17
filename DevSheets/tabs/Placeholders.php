@@ -137,6 +137,20 @@ if (trim($maintitle) !== ''): ?>
 
 <hr class="style-eight">
 
+<h4>Add custom CSS styleing to ckEditor:</h4>
+<p>Add your custom styles to the new <span class="tpl">ckEditor.css</span> file.</p>
+<pre><code class="language-diff-php diff-highlight" data-prismjs-copy=""># WYSIWYG Editor Options
+define('GSEDITOROPTIONS', '
+extraPlugins:"fontawesome5,youtube,codemirror,cmsgrid,colorbutton,oembed,simplebutton,spacingsliders",
+disableNativeSpellChecker : false,
+- forcePasteAsPlainText : true
++ forcePasteAsPlainText : true,
++ contentsCss : "theme/YOUR_THEME/css/ckEditor.css"
+');
+</code></pre>
+
+<hr class="style-eight">
+
 <h4>Custom Menu:</h4>
 <p>Personalize and add to your themes "<b>functions.php</b>" file.</p>
 <p>Replace <span class="tpl">&lt;?php get_navigation(); ?></span> with <span class="cke">&lt;?php get_my_navigation(); ?></span> in your theme.</p>
