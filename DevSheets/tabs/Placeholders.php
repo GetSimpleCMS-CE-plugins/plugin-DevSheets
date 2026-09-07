@@ -33,6 +33,33 @@
 &lt;?php include('common.footer.inc.php'); ?>
 </code></pre>
 
+<h4>Commonly Used Optional Tags:</h4>
+<pre><code class="language-php" data-prismjs-copy="">&lt;?php get_page_date(); ?>
+&lt;?php get_page_date('F jS, Y'); ?> // https://www.php.net/manual/en/function.date.php
+
+&lt;?php get_data_uploads(); ?>
+
+&lt;?php get_breadcrumbs('title', ' > ', 'Home'); ?>
+&lt;?php get_breadcrumbs('menu', ' > ', 'Home'); ?>
+
+&lt;?php get_sibling_pages(); ?>
+
+&lt;?php get_adjacent_pages(); ?>
+
+&lt;?php get_child_pages(); ?>
+&lt;?php get_child_pages('services'); ?> // children of page "services"
+
+&lt;?php theme_asset('css/style.css'); ?>¡
+</code></pre>
+
+<h4>Theme Image with Paramaters:</h4>
+<pre><code class="language-php" data-prismjs-copy="">&lt;?php theme_image('logo.png', 'Site Logo', 'logo'); ?>
+</code></pre>
+
+<p>Output</p>
+<pre><code class="language-html" data-prismjs-copy="">&lt;img src="http://yoursite.com/theme/mytheme/images/logo.png" alt="Site Logo" class="logo" />
+</code></pre>
+
 <hr class="style-eight">
 
 <h4>Conditional Includes:</h4>
@@ -153,11 +180,12 @@ disableNativeSpellChecker : false,
 
 <h4>Custom Menu:</h4>
 <p>Personalize and add to your themes "<b>functions.php</b>" file.</p>
-<p>Replace <span class="tpl">&lt;?php get_navigation(); ?></span> with <span class="cke">&lt;?php get_my_navigation(); ?></span> in your theme.</p>
+<p>Replace <span class="tpl">&lt;?php get_navigation(); ?></span> with <span class="cke">&lt;?php get_my_navigation('', 'nav-', false); ?></span> in your theme.</p>
 
 
 <pre><code class="language-php" data-prismjs-copy="Copy this code">&lt;?php 
-function build_my_menu($parentId, $menuTree, $currentpage, $classPrefix, $isSubmenu = false) {
+
+function <mark>build_my_menu</mark>($parentId, $menuTree, $currentpage, $classPrefix, $isSubmenu = false, $disableParentLinks = false) {
 	if (!isset($menuTree[$parentId])) {
 		return '';
 	}
@@ -204,10 +232,22 @@ function build_my_menu($parentId, $menuTree, $currentpage, $classPrefix, $isSubm
 			$linkClasses[] = " cur-act-a "; // Add class to active <a>
 		}
 
-		$menu .= '<li class="' . trim($classes) . '"><a href="' . find_url($page['url'], $page['parent']) . '" class="' . implode(" ", $linkClasses) . '" title="' . encode_quotes(cl($pageTitle)) . '">' . strip_decode($menuText) . '</a>';
+		// Determine if this link should be disabled (parent with children and setting is enabled)
+		$isDisabledLink = ($disableParentLinks && $hasSubmenu && !$isSubmenu);
+		
+		// Build the link
+		if ($isDisabledLink) {
+			// For disabled parent links, use a span or # with javascript:void(0)
+			$href = 'javascript:void(0)';
+			$linkClasses[] = " disabled-link ";
+		} else {
+			$href = find_url($page['url'], $page['parent']);
+		}
+
+		$menu .= '<li class="' . trim($classes) . '"><a href="' . $href . '" class="' . implode(" ", $linkClasses) . '" title="' . encode_quotes(cl($pageTitle)) . '"' . ($isDisabledLink ? ' onclick="return false;"' : '') . '>' . strip_decode($menuText) . '</a>';
 
 		// Add submenu if exists
-		$subMenu = build_my_menu($url_nav, $menuTree, $currentpage, $classPrefix, true);
+		$subMenu = <mark>build_my_menu</mark>($url_nav, $menuTree, $currentpage, $classPrefix, true, $disableParentLinks);
 		if (!empty($subMenu)) {
 			$menu .= $subMenu;
 		}
@@ -218,7 +258,7 @@ function build_my_menu($parentId, $menuTree, $currentpage, $classPrefix, $isSubm
 	return $menu;
 }
 
-function get_my_navigation($currentpage = "", $classPrefix = "") {
+function <mark>get_my_navigation</mark>($currentpage = "", $classPrefix = "", $disableParentLinks = false) { // true/false, Disables parent links
 	global $pagesArray, $id;
 	if (empty($currentpage)) {
 		$currentpage = $id;
@@ -235,7 +275,7 @@ function get_my_navigation($currentpage = "", $classPrefix = "") {
 	}
 
 	if (!empty($menuTree)) {
-		$menuHtml = build_my_menu(0, $menuTree, $currentpage, $classPrefix, false);
+		$menuHtml = <mark>build_my_menu</mark>(0, $menuTree, $currentpage, $classPrefix, false, $disableParentLinks);
 		echo exec_filter('menuitems', $menuHtml);
 	} else {
 		echo "<!-- No menu items -->";
